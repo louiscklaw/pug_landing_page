@@ -35,11 +35,13 @@ function clean() {
     return exec( 'rm -rf ./docs' );
 }
 
-function copy_img () {
-    copy_cmd = 'cp -r %s %s', CLIENT_IMG, PUBLIC_IMG;
-    console.log( copy_img );
+function mkdir_img () {
+    return exec( `mkdir -p ${PUBLIC_IMG}` );
+}
 
-    // return exec(  );
+function copy_img () {
+    return gulp.src( CLIENT_IMG + '/*' )
+        .pipe( gulp.dest( PUBLIC_IMG+'/' ) );
 }
 
 async function buildHTML() {
@@ -63,6 +65,6 @@ async function sass_compile() {
 
 exports.default = series( clean, buildHTML );
 exports.w = () => {
-    gulp.watch( PUG_FILEMASK, series( clean, buildHTML, copy_img ) );
+    gulp.watch( PUG_FILEMASK, series( clean, buildHTML, mkdir_img,copy_img ) );
     gulp.watch( path.join( SCSS_SRC, 'landing-page.scss' ), series( sass_compile ) );
 }
