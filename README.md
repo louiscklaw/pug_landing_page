@@ -1,4 +1,6 @@
 
+Try to translate https://startbootstrap.com/themes/landing-page/ into pug
+
 ### deploy to github
 ./docs is the root directory for github
 

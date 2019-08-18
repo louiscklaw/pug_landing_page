@@ -17,8 +17,7 @@ APP_DIR = path.join( __dirname, 'app' );
 CLIENT_DIR = path.join( APP_DIR, 'client' );
 
 CLIENT_SRC = path.join( CLIENT_DIR, 'src' );
-PUG_INC = path.join( CLIENT_SRC, 'inc' );
-PUG_PATHS = [ CLIENT_SRC, PUG_INC ];
+PUG_INC = path.join( CLIENT_SRC, 'pug_inc' );
 SCSS_SRC = path.join( CLIENT_SRC, 'scss' );
 CLIENT_IMG = path.join( CLIENT_DIR, 'img' );
 
@@ -29,25 +28,42 @@ PUBLIC_JS = path.join( PUBLIC_PATH, 'js' );
 PUBLIC_IMG = path.join( PUBLIC_PATH, 'img' );
 
 INDEX_PUG = path.join( CLIENT_SRC, 'index.pug' );
+
+
+// build config
+PUG_PATHS = [ CLIENT_SRC, PUG_INC ];
+SCSS_PATHs = [SCSS_SRC]
 PUG_FILEMASK = PUG_PATHS.map( p => path.join( p, '*.pug' ) );
 
-function clean() {
-    return exec( 'rm -rf ./docs' );
+// i think it is easier if i implement it using fabric
+async function clean_public_dir() {
+    return exec( `rm -rf ${PUBLIC_PATH}` );
 }
 
-function mkdir_img () {
-    return exec( `mkdir -p ${PUBLIC_IMG}` );
+async function mkdir_public_dir () {
+    return exec( `mkdir -p ${PUBLIC_PATH}` );
 }
 
-function copy_img () {
-    return gulp.src( CLIENT_IMG + '/*' )
-        .pipe( gulp.dest( PUBLIC_IMG+'/' ) );
+async function mkdir (dir_path) {
+    return exec( 'mkdir -p '+ dir_path);
+}
+
+async function copy_img () {
+    return exec('cp ./app/client/src/img/* ./docs/img/');
+}
+
+async function re_privision_public_dir () {
+    await clean_public_dir();
+    await mkdir_public_dir();
+    await mkdir( PUBLIC_PATH );
+    await mkdir( PUBLIC_IMG );
+    await mkdir( PUBLIC_CSS );
+    await copy_img();
 }
 
 async function buildHTML() {
     return gulp.src( INDEX_PUG )
         .pipe( pug( {} ) )
-
         .pipe( gulp.dest( PUBLIC_PATH ) );
     // console.log( "helloworld" );
 };
@@ -56,15 +72,18 @@ async function helloworld() {
     console.log( "helloworld" );
 }
 
-async function sass_compile() {
+async function sass_compile () {
+    console.log( SCSS_SRC );
     return gulp.src( path.join( SCSS_SRC, 'landing-page.scss' ) )
         .pipe( sass().on( 'error', sass.logError ) )
         .pipe( gulp.dest( PUBLIC_CSS ) );
 }
 
+default_task = series( re_privision_public_dir, buildHTML, sass_compile);
 
-exports.default = series( clean, buildHTML );
+exports.default = default_task;
+exports.sass = sass_compile;
 exports.w = () => {
-    gulp.watch( PUG_FILEMASK, series( clean, buildHTML, mkdir_img,copy_img ) );
-    gulp.watch( path.join( SCSS_SRC, 'landing-page.scss' ), series( sass_compile ) );
+    gulp.watch( PUG_FILEMASK, default_task );
+    gulp.watch( SCSS_PATHs, default_task );
 }
