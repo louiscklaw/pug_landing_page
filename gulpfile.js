@@ -45,12 +45,12 @@ async function helloworld () {
 async function sass_compile() {
   return gulp.src( path.join(SCSS_SRC,'landing-page.scss') )
     .pipe( sass().on( 'error', sass.logError ) )
-    .pipe( gulp.dest( '/home/logic/_workspace/pug_landing_page/docs/css' ) );
+    .pipe( gulp.dest( PUBLIC_CSS ) );
 }
 
 
 exports.default = series( clean, buildHTML );
 exports.w = () => {
-    gulp.watch( PUG_FILEMASK, series( clean, re_create, buildHTML ) );
-    gulp.watch( path.join(PUBLIC_CSS, 'landing-page.scss'), series( sass_compile ) );
+    gulp.watch( PUG_FILEMASK, series( clean, buildHTML ) );
+    gulp.watch( path.join( SCSS_SRC, 'landing-page.scss' ), series( sass_compile ) );
 }
