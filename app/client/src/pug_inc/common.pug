@@ -7,10 +7,41 @@ mixin feature_icon(icon, title, desc)
         h3= title
         p(class="lead mb-0")= desc
 
-mixin section1(title, desc)
+mixin showcase(title, desc, image_path)
     div(class="container-fluid p-0")
         div(class="row no-gutters")
-            div(class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('/img/bg_showcase_1.jpg');")
+            div(class="col-lg-6  text-white showcase-img" style!=image_path)
+            div(class="col-lg-6 my-auto showcase-text")
+                h2= title
+                p(class="lead mb-0")= desc
+
+mixin reverse_showcase(title, desc, image_path)
+    div(class="container-fluid p-0")
+        div(class="row no-gutters")
+            div(class="col-lg-6 order-lg-2 text-white showcase-img" style!=image_path)
             div(class="col-lg-6 order-lg-1 my-auto showcase-text")
                 h2= title
                 p(class="lead mb-0")= desc
+
+mixin testimonials(title, desc, image_path)
+    div(class="col-lg-4")
+        div(class="testimonial-item mx-auto mb-5 mb-lg-0")
+            img(class="img-fluid rounded-circle mb-3" src!=image_path alt!=image_path)
+            h5= title
+            p(class="font-weight-light mb-0")= desc
+
+mixin call-to-action(title, button_text)
+    .overlay
+    .container
+        .row
+            .col-xl-9(class="mx-auto")
+                h2(class="mb-4")= title
+
+            .col-md-10(class="col-lg-8 col-xl-7 mx-auto")
+                form
+                    .form-row
+                        .col-12(class="col-md-9 mb-2 mb-md-0")
+                            input(type="email" class="form-control form-control-lg" placeholder="Enter your email...")
+
+                        .col-12(class="col-md-3")
+                            button(type="submit" class="btn btn-block btn-lg btn-primary")= button_text
