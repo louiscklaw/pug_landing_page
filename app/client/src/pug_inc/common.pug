@@ -1,0 +1,16 @@
+//- common.pug
+
+mixin feature_icon(icon, title, desc)
+    div(class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3")
+        div(class="features-icons-icon d-flex")
+            i.m-auto.text-primary(class!=icon)
+        h3= title
+        p(class="lead mb-0")= desc
+
+mixin section1(title, desc)
+    div(class="container-fluid p-0")
+        div(class="row no-gutters")
+            div(class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('/img/bg_showcase_1.jpg');")
+            div(class="col-lg-6 order-lg-1 my-auto showcase-text")
+                h2= title
+                p(class="lead mb-0")= desc

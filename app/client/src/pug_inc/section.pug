@@ -1,0 +1,18 @@
+include ./common.pug
+
+//- icon grid
+section(class="features-icons bg-light text-center")
+    .container
+        .row
+            .col-lg-4
+                +feature_icon("icon-screen-desktop", "Fully responsive", "This theme will look great on any device, no matter the size!")
+
+            .col-lg-4
+                +feature_icon("icon-layers", "Bootstrap 4 Ready", "Featuring the latest build of the new Bootstrap 4 framework!")
+
+            .col-lg-4
+                +feature_icon("icon-check", "Easy to Use", "Ready to use with your own content, or customize the source files!")
+
+//- image showcase
+section.showcase
+    +section1("Fully Responsive Design", "When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!")
