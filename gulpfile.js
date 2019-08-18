@@ -4,13 +4,16 @@ const gulp = require( 'gulp' );
 const { series, parallel } = require('gulp');
 const { exec } = require('child_process');
 
-var pug = require( 'gulp-pug' );
+const pug = require( 'gulp-pug' );
+const plumber = require('gulp-plumber');
+
 
 CWD = __dirname;
 PUG_SRC = path.join( CWD, 'src' );
 PUG_INC = path.join( CWD, 'inc' );
 PUG_PATHS = [PUG_SRC, PUG_INC];
 PUG_FILEMASK = PUG_PATHS.map( p => path.join( p, '*.pug' ));
+INDEX_PUG = path.join( PUG_SRC, 'index.pug' );
 
 PUBLIC_PATH = path.join(CWD, 'docs');;
 
@@ -19,10 +22,16 @@ function clean() {
     return exec('rm -rf ./docs');
 }
 
-async function buildHTML() {
-    return gulp.src( PUG_FILEMASK )
-        .pipe( pug( {} ) )
-        .pipe( gulp.dest( PUBLIC_PATH ) );
+async function buildHTML () {
+    try {
+        return gulp.src( INDEX_PUG )
+            .pipe(plumber())
+            .pipe( pug( {} ) )
+            .pipe( gulp.dest( PUBLIC_PATH ) );
+
+    } catch (err) {
+
+    }
     // console.log( "helloworld" );
 };
 
