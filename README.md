@@ -1,3 +1,8 @@
+
+### deploy to github
+./docs is the root directory for github
+
+
 ### test
 
 npm test
