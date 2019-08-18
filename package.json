@@ -1,0 +1,27 @@
+{
+  "name": "test_new_portfolio",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/louiscklaw/test_new_portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/louiscklaw/test_new_portfolio/issues"
+  },
+  "homepage": "https://github.com/louiscklaw/test_new_portfolio#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-pug": "^4.0.1"
+  }
+}
