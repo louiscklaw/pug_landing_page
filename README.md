@@ -12,3 +12,6 @@ npm test
 ### dev
 npm dev
 sass ./src/scss/landing-page.scss ../docs/css/test.css
+
+### tryout page
+https://louiscklaw.github.io/pug_landing_page/

@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "npm install"
+    "test": "cd app && find . |entr -c -s \"gulp\""
   },
   "repository": {
     "type": "git",
