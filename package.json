@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/louiscklaw/test_new_portfolio#readme",
   "devDependencies": {
+    "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
     "gulp-plumber": "^1.2.1",
-    "gulp-pug": "^4.0.1"
+    "gulp-pug": "^4.0.1",
+    "gulp-sass": "^4.0.2"
   }
 }

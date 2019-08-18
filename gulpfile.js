@@ -5,8 +5,7 @@ const { series, parallel } = require('gulp');
 const { exec } = require('child_process');
 
 const pug = require( 'gulp-pug' );
-const plumber = require('gulp-plumber');
-
+const sass = require( 'gulp-sass' );
 
 CWD = __dirname;
 PUG_SRC = path.join( CWD, 'src' );
@@ -34,7 +33,15 @@ async function helloworld () {
     console.log( "helloworld" );
 }
 
+async function sass_compile() {
+  return gulp.src( '/home/logic/_workspace/pug_landing_page/src/scss/landing-page.scss' )
+    .pipe( sass().on( 'error', sass.logError ) )
+    .pipe( gulp.dest( '/home/logic/_workspace/pug_landing_page/docs/css' ) );
+}
+
+
 exports.default = series( clean, buildHTML );
 exports.w = () => {
-    gulp.watch( PUG_FILEMASK, series(clean, buildHTML) );
+  gulp.watch( PUG_FILEMASK, series( clean, buildHTML ) );
+  gulp.watch( '/home/logic/_workspace/pug_landing_page/src/scss/landing-page.scss', series( sass_compile ) );
 }
