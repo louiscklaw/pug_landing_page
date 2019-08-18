@@ -22,16 +22,11 @@ function clean() {
     return exec('rm -rf ./docs');
 }
 
-async function buildHTML () {
-    try {
-        return gulp.src( INDEX_PUG )
-            .pipe(plumber())
-            .pipe( pug( {} ) )
-            .pipe( gulp.dest( PUBLIC_PATH ) );
+async function buildHTML() {
+    return gulp.src( INDEX_PUG )
+        .pipe( pug( {} ) )
 
-    } catch (err) {
-
-    }
+        .pipe( gulp.dest( PUBLIC_PATH ) );
     // console.log( "helloworld" );
 };
 
