@@ -68,15 +68,15 @@ async function buildHTML() {
     // console.log( "helloworld" );
 };
 
-async function helloworld() {
-    console.log( "helloworld" );
-}
-
 async function sass_compile () {
     console.log( SCSS_SRC );
     return gulp.src( path.join( SCSS_SRC, 'landing-page.scss' ) )
         .pipe( sass().on( 'error', sass.logError ) )
         .pipe( gulp.dest( PUBLIC_CSS ) );
+}
+
+async function helloworld() {
+    console.log( "helloworld" );
 }
 
 default_task = series( re_privision_public_dir, buildHTML, sass_compile);
