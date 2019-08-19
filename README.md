@@ -15,3 +15,7 @@ npm start
 # to develop
 npm install -D
 npm test
+```
+
+### github:
+[https://github.com/louiscklaw/pug-startbootstrap-coming-soon](https://github.com/louiscklaw/pug-startbootstrap-coming-soon)
