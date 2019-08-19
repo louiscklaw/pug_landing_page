@@ -1,17 +1,17 @@
-
-Try to translate https://startbootstrap.com/themes/landing-page/ into pug
-
-### deploy to github
-./docs is the root directory for github
+### purpose
+This is my pet project to try implementing pug on current bootstrap themes.
 
 
-### test
+### credit to:
+[https://startbootstrap.com/themes/landing-page/](https://startbootstrap.com/themes/landing-page/)
 
+
+### to run:
+```
+# to run
+npm install
+npm start
+
+# to develop
+npm install -D
 npm test
-
-### dev
-npm dev
-sass ./src/scss/landing-page.scss ../docs/css/test.css
-
-### tryout page
-https://louiscklaw.github.io/pug_landing_page/
