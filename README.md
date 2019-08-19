@@ -19,3 +19,6 @@ npm test
 
 ### github:
 [https://github.com/louiscklaw/pug-startbootstrap-coming-soon](https://github.com/louiscklaw/pug-startbootstrap-coming-soon)
+
+### preview:
+[https://louiscklaw.github.io/pug-startbootstrap-coming-soon/](https://louiscklaw.github.io/pug-startbootstrap-coming-soon/)
